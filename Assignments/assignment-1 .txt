@@ -1,0 +1,59 @@
+-- 1----Write a query that displays InvoiceId, 
+-- CustomerId and total dollar amount for each invoice, 
+--sorted first by CustomerId (in ascending order), and then by total dollar amount  (in descending order).
+
+SELECT *
+from invoices;
+
+
+SELECT InvoiceId, CustomerId,total
+from invoices
+order by CustomerId, total DESC;
+
+--2----Write a query that displays InvoiceId, CustomerId and total dollar amount for each invoice, 
+--but this time sorted first by total dollar amount (in descending order),
+--and then by CustomerId (in ascending order).
+
+SELECT InvoiceId, CustomerId,total
+from invoices
+ORDER BY total DESC, CustomerId ASC
+
+
+--3----Compare the results of these two queries above. 
+--How are the results different when you switch the column you sort on first? (Explain it in your own words.)
+
+answer
+--I saw the first sorted column in order like how i command and the second column was sorted according to the first sorted column. 
+--When i switch the positions of that two columns in the “ORDER” BY line this time the result is reversed. 
+--It means again the second column in the “ORDER BY” line was sorted according to the first sorted column.
+
+--4----Write a query to pull the first 10 rows and all columns from the invoices table that have a dollar amount of total greater than or equal to 10.
+
+SELECT * 
+FROM invoices
+WHERE total>= 10
+LIMIT 10;
+
+-- 5---Write a query to pull the first 5 rows and all columns from the invoices table that have a dollar amount of total less than 10.
+
+SELECT * 
+FROM invoices
+WHERE total <10
+LIMIT 5;
+
+
+--6--Find all track names that start with 'B' and end with 's'.
+
+SELECT name
+FROM  tracks
+WHERE name like 'B%s';
+
+-- 7-- Use the invoices table to find all information regarding invoices
+-- whose billing address is USA or Germany or Norway or Canada and invoice date is at any point in 2010, 
+--sorted from newest to oldest.
+
+SELECT *
+FROM invoices
+WHERE BillingCountry in ('USA', 'Germany', 'Norway', 'Canada') 
+and InvoiceDate  BETWEEN '2010-01-01' AND '2011-01-01'
+ORDER by InvoiceDate DESC;
